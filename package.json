@@ -1,0 +1,36 @@
+{
+  "name": "@riculum/js-validator",
+  "version": "1.0.0",
+  "description": "A simple JavaScript validation library",
+  "main": "src/Validator.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Riculum/js-validator.git"
+  },
+  "keywords": [
+    "validator",
+    "validation",
+    "validate",
+    "sanitization",
+    "sanitize",
+    "sanitisation",
+    "sanitise",
+    "assert"
+  ],
+  "author": "riculum",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Riculum/js-validator/issues"
+  },
+  "homepage": "https://github.com/Riculum/js-validator#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "@types/jest": "^29.2.2",
+    "@types/node": "^18.11.9",
+    "jest": "^29.3.1"
+  }
+}
