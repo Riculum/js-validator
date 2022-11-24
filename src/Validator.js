@@ -3,6 +3,7 @@ import Validation from "./Validation.js";
 export default class Validator extends Validation {
     static items = {};
     static validatedItems = {}
+    static customValidator = []
 
     static validate(items) {
         this.items = items
@@ -12,6 +13,13 @@ export default class Validator extends Validation {
         })
 
         return this.validatedItems
+    }
+
+    static register(key, validator) {
+        this.customValidator.push({
+            "key": key,
+            validator: validator
+        })
     }
 
     static #validateItem(key, value) {
@@ -30,6 +38,7 @@ export default class Validator extends Validation {
             case 'zip':
                 return Validator.validateZip(value)
             case 'place':
+            case 'city':
                 return Validator.validateCity(value)
             case 'country':
                 return Validator.validateCountryCode(value)
@@ -116,7 +125,12 @@ export default class Validator extends Validation {
             case 'paymentStatus':
                 return Validator.validateEnum(value, ['draft', 'open', 'pending', 'completed', 'canceled', 'refunded', 'paymentReminder', 'firstReminder', 'secondReminder', 'debtCollectionOrder', 'requestForContinuation', 'lossCertificate'])
             default:
-                throw new Error(`${key} could not be validated`)
+                const item = this.customValidator.filter(pilot => pilot.key === key)[0];
+                if (item) {
+                    return eval(`Validator.${item.validator}(value)`)
+                } else {
+                    throw new Error(`${key} could not be validated`)
+                }
         }
     }
 }
