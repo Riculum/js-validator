@@ -1,6 +1,6 @@
 {
   "name": "@riculum/js-validator",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A simple JavaScript validation library",
   "main": "src/Validator.js",
   "type": "module",
