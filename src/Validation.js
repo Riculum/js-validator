@@ -154,6 +154,13 @@ export  default class Validation {
         return int
     }
 
+    static validateObjectId(objectId) {
+        const regex = new RegExp("^[a-fA-F\\d]{24}$")
+        if (!regex.test(objectId)) throw new Error(`${objectId} is not a valid objectId`)
+
+        return objectId
+    }
+
     static validateOTP(otp) {
         const regex = new RegExp("^[0-9]{6}$")
         if (!regex.test(otp)) throw new Error(`${otp} is not a valid OTP`)

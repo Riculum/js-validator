@@ -681,6 +681,38 @@ describe('Validator', () => {
         });
     })
 
+    describe('validateObjectId', () => {
+        it('should be valid OTP [112345679065574883030833]', () => {
+            expect(Validator.validateObjectId("112345679065574883030833")).toBe("112345679065574883030833")
+        });
+        it('should be valid OTP ["FFFFFFFFFFFFFFFFFFFFFFFF"]', () => {
+            expect(Validator.validateObjectId("FFFFFFFFFFFFFFFFFFFFFFFF")).toBe("FFFFFFFFFFFFFFFFFFFFFFFF")
+        });
+        it('should be valid OTP ["45cbc4a0e4123f6920000002"]', () => {
+            expect(Validator.validateObjectId("45cbc4a0e4123f6920000002")).toBe("45cbc4a0e4123f6920000002")
+        });
+        it('should throw an error when objectId is invalid [FFFFFFFFFFFFFFFFFFFFFFFFaaa"]', () => {
+            expect(() => {
+                expect(Validator.validateObjectId("FFFFFFFFFFFFFFFFFFFFFFFFaaa")).toBe("FFFFFFFFFFFFFFFFFFFFFFFFaaa")
+            }).toThrowError()
+        });
+        it('should throw an error when objectId is invalid ["aaa"]', () => {
+            expect(() => {
+                expect(Validator.validateObjectId("aaa")).toBe("aaa")
+            }).toThrowError()
+        });
+        it('should throw an error when objectId is invalid [null]', () => {
+            expect(() => {
+                expect(Validator.validateObjectId(null)).toBe(null)
+            }).toThrowError()
+        });
+        it('should throw an error when objectId is invalid [undefined]', () => {
+            expect(() => {
+                expect(Validator.validateObjectId(undefined)).toBe(undefined)
+            }).toThrowError()
+        });
+    })
+
     describe('validatePublicIpAddress', () => {
         it('should be valid public IP ["64.215.166.144"]', () => {
             expect(Validator.validatePublicIpAddress("64.215.166.144")).toBe("64.215.166.144")
